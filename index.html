@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"
+        content="width=device-width,initial-scale=1.0">
+        <title>Portfolio Tracker</title>
+        <style>
+            body{
+                font-family:Arial,sans-serif;
+            }
+        #add-asset-form{
+            margin-bottom:20px;
+        }
+        #portfolio-container {
+            border: 1px solid #ccc;
+            padding: 20px;
+        }
+        #portfolio-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        #portfolio-list li {
+            padding: 10px;
+            border-bottom: 1px solid
+            #ccc;
+        }
+        #portfolio-list li:last-child {
+            border-bottom: none;
+        }
+        </style>
+    </head>
+    </body>
+          <h1>Portfolio Tracker</h1>
+          <!--Asset selection form-->
+          <form id="add-asset-form"><label
+            for="asset-select">Select an asset:</label>
+            <select id="asset-select"><option
+            value="Apple">Apple</option><option
+            value="Google">Google</option><option
+            value="Amazon">Amazon</option>
+            </select>
+            <button
+            id="add-asset-btn">Add to portfolio</button>
+            </form>
+            <!--Portfolio display-->
+            <div id="portfolio-container">
+                <h2>Your Portfolio:</h2>
+                <u1 id="portfolio-list"></u1>
+            </div>
+            <!--Performance display-->
+            <div id="Performance-container">
+                <h2>performance:</h2>
+                <p id="performance-data"></p>
+            </div>
+            <script>
+                //Define an array to store the user's portfolio
+                let portfolio = [];
+                //Define an object to store the asset's data
+                let assetsData = {
+                    "Apple": { price:100,performance: 0.05 },
+                    "Google": { price:500,performance:0.03 },
+                    "Amazon": { price:2000,performance: 0.02 }
+                };
+                //Function to update the portfolio list function
+                updatePortfolioLiat() { const portfolioList = document.getElementById("portfolio-list"); portfolioList.innerHTML =="";
+                    portfolio.forEach((asset) => {const listitem=document.createElement("li");
+                    listitem.textContent = '${asset.name} - Price: $$ {asset.price} - Performance: $ { asset.performance * 100} %';
+                    portfolioList.appendChild(listItem);
+                });
+                }
+                //Function to handle adding an asset to the portfolio function
+                    addAssetToPortfolio(event) 
+                    event.preventDefault(); 
+                    const assetSelect = document.getElementById("asset-select");
+                    const selectedAsset = assetsData.value;
+                    const assetData = assetsData[selectedAsset];
+                //Create a new asset object with random performance data 
+                    const newAsset = { name: selectedAsset,price: assetData.price,performance: Math.random() * 0.1};
+                    portfolio.push(newAsset);
+                    updatePortfolioList();
+                //Update the performance display
+                    const performanceData = portfolio.reduce((acc,asset) => acc + asset.performance, 0);
+                    document.getElementById("performance-data").textContent = 'Total performance: $ { performanceData * 100}%';
+                 //Add event listener to the add asset button
+                document.getElementsById("add-asset-btn").addEventListener("click",addAssetToPortfolio);
+                </script>     
+                </body>
+                </html>                             
